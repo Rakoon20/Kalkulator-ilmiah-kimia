@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator Ilmiah & Kimia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- ===== Header ===== -->
+    <div class="header">
+      <h1>🧮 Kalkulator</h1>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+
+    <!-- ===== Tabs ===== -->
+    <div class="tabs">
+      <button id="btnSci" class="active" onclick="showCalc('sci')">Ilmiah</button>
+      <button id="btnChem" onclick="showCalc('chem')">Kimia</button>
+    </div>
+
+    <!-- ===== Kalkulator Ilmiah ===== -->
+    <div id="sciCalc" class="calculator active">
+      <div class="display-container">
+        <input type="text" id="display" readonly />
+      </div>
+
+      <div class="buttons">
+        <!-- Fungsi ilmiah -->
+        <button onclick="appendValue('sin(')">sin</button>
+        <button onclick="appendValue('cos(')">cos</button>
+        <button onclick="appendValue('tan(')">tan</button>
+        <button onclick="appendValue('log(')">log</button>
+        <button onclick="appendValue('ln(')">ln</button>
+
+        <!-- Kontrol & operator -->
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">⌫</button>
+        <button onclick="appendValue('(')">(</button>
+        <button onclick="appendValue(')')">)</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+
+        <!-- Baris angka -->
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button onclick="appendValue('√(')">√</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="appendValue('^')">xʸ</button>
+        <button class="operator" onclick="appendValue('-')">−</button>
+
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button onclick="appendValue('%')">%</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+
+        <!-- Baris bawah -->
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button onclick="appendValue('π')">π</button>
+        <button onclick="appendValue('e')">e</button>
+        <!-- Tombol "=" lebih besar -->
+        <button class="equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <!-- ===== Kalkulator Kimia ===== -->
+    <div id="chemCalc" class="calculator">
+      <h2>⚗️ Kalkulator Kimia</h2>
+      <select id="chemOption">
+        <option value="molToGram">Mol → Gram</option>
+        <option value="gramToMol">Gram → Mol</option>
+        <option value="molToPartikel">Mol → Partikel</option>
+        <option value="partikelToMol">Partikel → Mol</option>
+      </select>
+
+      <input type="number" id="chemValue" placeholder="Masukkan nilai" />
+      <input type="number" id="molarMass" placeholder="Massa molar (g/mol)" />
+      <button class="calc-btn" onclick="calcChem()">Hitung</button>
+
+      <div id="chemResult"></div>
+    </div>
+
+    <!-- ===== Panel Riwayat ===== -->
+    <div class="history-panel">
+      <div class="history-header">
+        <h4>🕓 Riwayat</h4>
+        <button class="clear-history" onclick="clearHistory()">🧹</button>
+      </div>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

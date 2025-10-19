@@ -1,0 +1,312 @@
+:root {
+  --bg: #f9f9fb;
+  --text: #222;
+  --primary: #66a6ff;
+  --accent: #4caf50;
+  --btn-bg: #f3f3f3;
+  --shadow: rgba(0,0,0,0.1);
+}
+
+/* Dark Mode Variables */
+body.dark {
+  --bg: #1c1c1c;
+  --text: #f3f3f3;
+  --primary: #3f51b5;
+  --accent: #009688;
+  --btn-bg: #2b2b2b;
+  --shadow: rgba(255,255,255,0.1);
+}
+
+/* ====== Layout Fix ====== */
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 10px;
+  box-sizing: border-box;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* ====== Calculator Container ====== */
+.container {
+  width: 420px;
+  max-width: 95%;
+  background: var(--bg);
+  border-radius: 20px;
+  box-shadow: 0 6px 25px var(--shadow);
+  padding: 20px 25px 30px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ====== Header ====== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.header h1 {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 600;
+}
+.theme-toggle {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+.theme-toggle:hover {
+  opacity: 0.85;
+}
+
+/* ====== Tabs ====== */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 15px;
+}
+.tabs button {
+  flex: 1;
+  border: none;
+  background: var(--primary);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 3px 5px var(--shadow);
+  font-weight: 500;
+}
+.tabs button.active {
+  background: var(--accent);
+}
+
+/* ====== Display Input ====== */
+.display-container {
+  background: var(--btn-bg);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.15);
+}
+#display {
+  width: 100%;
+  height: 80px;
+  border: none;
+  background: transparent;
+  font-size: 2.3em;
+  text-align: right;
+  color: var(--text);
+  outline: none;
+  padding-right: 10px;
+  letter-spacing: 1px;
+}
+
+/* ====== Buttons ====== */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+}
+button {
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1em;
+  padding: 16px;
+  background: var(--btn-bg);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 3px 5px var(--shadow);
+  transition: all 0.15s ease;
+}
+button:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.25);
+}
+button.operator {
+  background: var(--primary);
+  color: white;
+}
+button.equal {
+  background: var(--accent);
+  color: white;
+  grid-column: 5; /* posisi di kolom ke-5 */
+  grid-row: span 2; /* tinggi 2 baris ke bawah */
+  font-size: 1.3em;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: 0.2s ease;
+}
+
+button.equal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--shadow);
+}
+
+button.equal:active {
+  transform: scale(0.97);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+button.clear {
+  background: #ff5252;
+  color: white;
+}
+
+/* ====== Chemistry Section ====== */
+#chemCalc {
+  text-align: center;
+}
+#chemCalc input, #chemCalc select {
+  width: 80%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  outline: none;
+  text-align: center;
+  transition: 0.2s;
+  font-size: 0.95rem;
+}
+#chemCalc input:focus {
+  border-color: var(--primary);
+}
+.calc-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.calc-btn:hover {
+  background: var(--accent);
+}
+#chemResult {
+  background: var(--btn-bg);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+/* ====== Visibility Toggle ====== */
+.calculator {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.calculator.active {
+  display: block;
+}
+
+/* ====== Animation ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 480px) {
+  #display {
+    height: 70px;
+    font-size: 1.8em;
+  }
+  .buttons button {
+    padding: 12px;
+    font-size: 1em;
+  }
+  .container {
+    padding: 15px;
+  }
+}
+
+/* ====== History Section (moved to bottom) ====== */
+.history-panel {
+  background: var(--btn-bg);
+  border-radius: 15px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.15);
+  padding: 10px 15px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.history-header h4 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+}
+.clear-history {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+.clear-history:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+.clear-history:active {
+  transform: scale(0.95);
+}
+
+#historyList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 160px;
+  overflow-y: auto;
+}
+#historyList li {
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background: #ffffff40;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.9rem;
+  word-wrap: break-word;
+}
+#historyList li:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* Scrollbar minimalis */
+#historyList::-webkit-scrollbar {
+  width: 6px;
+}
+#historyList::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 700px) {
+  .history-panel {
+    max-height: 200px;
+  }
+}
